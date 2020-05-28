@@ -1,23 +1,25 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 part 'counter_event.dart';
+part 'counter_state.dart';
 
-class CounterBloc extends Bloc<CounterEvent, int> {
+class CounterBloc extends Bloc<CounterEvent, CounterState> {
   @override
-  int get initialState => 0;
+  CounterState get initialState => CounterInitial();
 
   @override
-  Stream<int> mapEventToState(
+  Stream<CounterState> mapEventToState(
     CounterEvent event,
   ) async* {
     if (event is IncrementEvent) {
-      yield state + 1;
+      yield CounterUpdate(counter: state.counter + 1);
     }
     if (event is DecrementEvent) {
-      yield state - 1;
+      yield CounterUpdate(counter: state.counter - 1);
     }
   }
 }

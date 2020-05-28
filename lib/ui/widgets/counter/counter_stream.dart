@@ -7,8 +7,8 @@ class CounterStream extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CounterBloc, int>(
-      builder: (context, int state) {
+    return BlocBuilder<CounterBloc, CounterState>(
+      builder: (context, CounterState state) {
         return Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -17,7 +17,7 @@ class CounterStream extends StatelessWidget {
                 'You have pushed the button this many times:',
               ),
               Text(
-                '$state',
+                '${state.counter}',
                 style: Theme.of(context).textTheme.headline4,
               ),
             ],
